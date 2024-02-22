@@ -1,16 +1,16 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export default function Header() {
-  return (
-    <HeaderStyle>
-        <h1>book store</h1>
-    </HeaderStyle>
-  )
+    return (
+        <HeaderStyle>
+            <h1>book store</h1>
+        </HeaderStyle>
+    );
 }
 
 const HeaderStyle = styled.header`
-    background-color: #333;
+    background-color: ${({ theme }) => theme.color.background};
     h1 {
-        color: white
+        color: ${({ theme }) => theme.color.primary};
     }
-`
+`;
