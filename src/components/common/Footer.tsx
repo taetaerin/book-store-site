@@ -36,5 +36,4 @@ const FooterStyled = styled.footer`
 
         }
     }
-
 `;
