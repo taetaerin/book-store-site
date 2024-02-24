@@ -8,6 +8,7 @@ export const useCategory = () => {
     useEffect(() => {
         fetchCategory().then((category) => {
             if(!category) return
+            
             const categoryWithAll = [
                 { 
                     categoryId: null, 
