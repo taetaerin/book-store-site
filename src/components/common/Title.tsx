@@ -9,7 +9,7 @@ interface Props {
 
 export default function Title({children, size, color} : Props) {
   return (
-    <TitleStyle size={size}>
+    <TitleStyle size={size} color={color}>
         {children}
     </TitleStyle>
   )

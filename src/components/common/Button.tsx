@@ -9,8 +9,8 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>{
     isLoading?: boolean;
 }
 
-export default function Button({children, size, scheme, disabled, isLoading}: Props) {
-    return <ButtonStyle size={size} scheme={scheme} disabled={disabled} isLoading={isLoading}>{children}</ButtonStyle>;
+export default function Button({children, size, scheme, disabled, isLoading, ...props}: Props) {
+    return <ButtonStyle size={size} scheme={scheme} disabled={disabled} isLoading={isLoading} {...props}>{children}</ButtonStyle>;
 }
 
 const ButtonStyle = styled.button<Omit<Props, 'children'>>`

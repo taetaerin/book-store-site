@@ -80,7 +80,7 @@ export const light : Theme = {
             backgroundColor: 'midnightblue'
         },
         normal: {
-            color: 'white',
+            color: 'black',
             backgroundColor: 'lightgrey'
         }
     },
