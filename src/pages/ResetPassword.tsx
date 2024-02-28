@@ -16,7 +16,7 @@ export interface SignupProps {
 
 export default function ResetPassword() {
     const navigate = useNavigate();
-    const showAlert = useAlert();
+    const { showAlert } = useAlert();
     const [resetRequested, setResetRequested] = useState(false);
 
     const {
@@ -26,17 +26,17 @@ export default function ResetPassword() {
     } = useForm<SignupProps>();
 
     const onSubmit = (data: SignupProps) => {
-        if(resetRequested) {
+        if (resetRequested) {
             //초기화
             resetPassword(data).then(() => {
-                showAlert('비밀번호가 초기화 되었습니다.')
-                navigate('/login');
-            })
+                showAlert("비밀번호가 초기화 되었습니다.");
+                navigate("/login");
+            });
         } else {
             //요청
             resetRequest(data).then(() => {
-                setResetRequested(true)
-            })
+                setResetRequested(true);
+            });
         }
     };
 
@@ -63,7 +63,7 @@ export default function ResetPassword() {
 
                     <fieldset>
                         <Button type="submit" size="medium" scheme="primary">
-                            {resetRequested ? '비밀번호 초기화' : '초기화 요청'}
+                            {resetRequested ? "비밀번호 초기화" : "초기화 요청"}
                         </Button>
                     </fieldset>
                     {/* <div className="info">

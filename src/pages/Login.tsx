@@ -16,7 +16,7 @@ export interface SignupProps {
 
 export default function Login() {
     const navigate = useNavigate();
-    const showAlert = useAlert();
+    const { showAlert } = useAlert();
 
     const { isloggedIn, storeLogin, storeLogout } = useAuthStore();
 
@@ -27,15 +27,18 @@ export default function Login() {
     } = useForm<SignupProps>();
 
     const onSubmit = (data: SignupProps) => {
-        login(data).then((res) => {
-            //console.log(res.token);
-            storeLogin(res.token);
+        login(data).then(
+            (res) => {
+                //console.log(res.token);
+                storeLogin(res.token);
 
-            showAlert("로그인 완료되었습니다.");
-            navigate("/");
-        }, (error) => {
-            showAlert('로그인이 실패했습니다.')
-        });
+                showAlert("로그인 완료되었습니다.");
+                navigate("/");
+            },
+            (error) => {
+                showAlert("로그인이 실패했습니다.");
+            }
+        );
     };
 
     console.log(isloggedIn);
