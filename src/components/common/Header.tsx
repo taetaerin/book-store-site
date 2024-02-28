@@ -33,7 +33,7 @@ export default function Header() {
                 {isloggedIn && (
                     <ul>
                         <li>
-                            <Link to="/carts">장바구니</Link>
+                            <Link to="/cart">장바구니</Link>
                         </li>
                         <li>
                             <Link to="/orders">주문내역</Link>
@@ -52,7 +52,7 @@ export default function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/join">
+                            <Link to="/signup">
                                 <FaRegUser />
                                 회원가입
                             </Link>

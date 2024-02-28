@@ -13,8 +13,8 @@ export interface SignupProps {
 }
 
 export default function Signup() {
-    const navigate = useNavigate()
-    const showAlert = useAlert();
+    const navigate = useNavigate();
+    const { showAlert } = useAlert();
     const {
         register,
         handleSubmit,
@@ -24,10 +24,10 @@ export default function Signup() {
     const onSubmit = (data: SignupProps) => {
         signup(data).then((res) => {
             //성공
-            console.log('res', res)
-            showAlert('회원가입이 완료되었습니다.')
-            navigate('/login')
-        })
+            console.log("res", res);
+            showAlert("회원가입이 완료되었습니다.");
+            navigate("/login");
+        });
     };
 
     return (
