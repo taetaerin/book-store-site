@@ -11,12 +11,26 @@ export interface Order {
 
 export interface OrderSheet {
     items: number[];
-    delivery: {
-        address: string;
-        receiver: string;
-        contact: number;
-    };
+    delivery: Delivery;
     firstBookTitle: string;
     totalQuantity: number;
     totalPrice: number;
+}
+
+export interface Delivery {
+    address: string;
+    receiver: string;
+    contact: number;
+}
+
+export interface OrderDetailItem {
+    bookId: number;
+    title: string;
+    author: string;
+    price: number;
+    quantity: number;
+}
+
+export interface OrderListItem extends Order {
+    detail?: OrderDetailItem[] 
 }
