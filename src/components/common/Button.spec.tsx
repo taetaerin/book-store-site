@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import Title from "./Title";
-import { BookStoreThemeProvider } from "../../context/themeContext";
-import Button from "./Button";
+import { BookStoreThemeProvider } from "@/context/themeContext";
+import Button from "@/components/common/Button";
 
 describe("button 테스트", () => {
     it("렌더 확인", () => {

@@ -1,13 +1,12 @@
-import styled from "styled-components";
-import Title from "../components/common/Title";
-import InputText from "../components/common/InputText";
-import Button from "../components/common/Button";
+import Title from "@/components/common/Title";
+import InputText from "@/components/common/InputText";
+import Button from "@/components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { login, signup } from "../api/auth.api";
-import { useAlert } from "../hooks/useAlert";
-import { SignupStyle } from "./Signup";
-import { useAuthStore } from "../store/authStore";
+import { useForm } from "react-hook-form";
+import { login } from "@/api/auth.api";
+import { useAlert } from "@/hooks/useAlert";
+import { SignupStyle } from "@/pages/Signup";
+import { useAuthStore } from "@/store/authStore";
 
 export interface SignupProps {
     email: string;
