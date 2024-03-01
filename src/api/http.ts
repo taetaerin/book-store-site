@@ -10,10 +10,10 @@ export const createClient = (config?: AxiosRequestConfig) => {
         timeout: DEFAULT_TIMEOUT,
         headers: {
             "content-type": "application/json",
-            "Authorization" : getToken() ? getToken() : '',
+            Authorization: getToken() ? getToken() : "",
         },
         withCredentials: true,
-       ...config,
+        ...config,
     });
 
     axiosInstance.interceptors.response.use(
@@ -22,13 +22,12 @@ export const createClient = (config?: AxiosRequestConfig) => {
         },
         (error) => {
             //로그인 만료 처리
-            if(error.response.status ===  401) {
-                removeToken()
-                window.location.href = '/login';
+            if (error.response.status === 401) {
+                removeToken();
+                window.location.href = "/login";
                 return;
             }
-            return Promise.reject(error); 
-            
+            return Promise.reject(error);
         }
     );
 
@@ -36,3 +35,25 @@ export const createClient = (config?: AxiosRequestConfig) => {
 };
 
 export const httpClient = createClient();
+
+type RequestMethod = "get" | "post" | "put" | "delete";
+
+export const requestHandler = async <T>(method: RequestMethod, url: string, payload?: T) => {
+    let response;
+    switch (method) {
+        case "post":
+            response = await httpClient.post(url, payload);
+            break;
+        case "get":
+            response = await httpClient.get(url);
+            break;
+        case "put":
+            response = await httpClient.put(url, payload);
+            break;
+
+        case "delete":
+            response = await httpClient.delete(url);
+            break;
+    }
+    return response.data;
+};
