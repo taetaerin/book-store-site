@@ -11,6 +11,9 @@ export default function BooksFilter() {
     const handleCategory = (id: number | null) => {
         const newSearchParams = new URLSearchParams(searchParams);
 
+        newSearchParams.delete(QUERYSTRING.PAGE);
+
+
         if (id === null) {
             newSearchParams.delete(QUERYSTRING.CATEGORY_ID);
         } else {
