@@ -107,10 +107,10 @@ export const dark : Theme = {
     color: {
         primary: 'coral',
         background: 'midnightblue',
-        secondary: 'darkblue',
+        secondary: 'white',
         third: 'darkgreen',
-        border: 'gray',
-        text: 'black'
+        border: 'white',
+        text: 'white'
     }
 }
 

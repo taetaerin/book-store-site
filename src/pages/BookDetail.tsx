@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import EllipsisBox from "@/components/common/EllipsisBox";
 import LikeButton from "@/components/book/LikeButton";
 import AddToCart from "@/components/book/AddToCart";
+import BookReview from "@/components/book/BookReview";
+import { Tab, Tabs } from "@/components/common/Tabs";
 
 const bookInfoList = [
     {
@@ -47,8 +49,8 @@ const bookInfoList = [
 export default function BookDetail() {
     const { bookId } = useParams();
 
-    const { book, likeToggle } = useBook(bookId);
-    console.log(book);
+    const { book, likeToggle, reviews, addReview } = useBook(bookId);
+    console.log(reviews);
 
     if (!book) return null;
 
@@ -72,7 +74,7 @@ export default function BookDetail() {
                     <p className="summary">{book.summary}</p>
 
                     <div className="like">
-                        <LikeButton book={book} onClick={likeToggle}/>
+                        <LikeButton book={book} onClick={likeToggle} />
                     </div>
                     <div className="add-cart">
                         <AddToCart book={book} />
@@ -80,11 +82,22 @@ export default function BookDetail() {
                 </div>
             </header>
             <div className="content">
-                <Title size="medium">상세 설명</Title>
-                <EllipsisBox linelimit={4}>{book.detail}</EllipsisBox>
+                <Tabs>
+                    <Tab title="상세 설명">
+                        <Title size="medium">상세 설명</Title>
+                        <EllipsisBox linelimit={4}>{book.detail}</EllipsisBox>
+                    </Tab>
 
-                <Title size="medium">목차</Title>
-                <p className="index">{book.contents}</p>
+                    <Tab title="목차">
+                        <Title size="medium">목차</Title>
+                        <p className="index">{book.contents}</p>
+                    </Tab>
+
+                    <Tab title="리뷰">
+                        <Title size="medium">리뷰</Title>
+                        <BookReview reviews={reviews} onAdd={addReview} />
+                    </Tab>
+                </Tabs>
             </div>
         </BookDetailStyle>
     );

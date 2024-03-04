@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ThemeName } from "@/style/theme";
 import { ThemeContext } from "@/context/themeContext";
+import Button from "../common/Button";
 
 interface Props {
     themeName: ThemeName;
@@ -10,5 +11,5 @@ interface Props {
 export default function ThemeSwitcher() {
     const {themeName, toggleTheme} = useContext(ThemeContext)
 
-    return <button onClick={toggleTheme}>{themeName}</button>;
+    return <Button size="small" scheme="normal" onClick={toggleTheme}>{themeName}</Button>;
 }
