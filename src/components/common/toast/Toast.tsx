@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { FaBan, FaInfoCircle, FaPlus } from "react-icons/fa";
 import styled from "styled-components";
 
-export const TOAST_REMOVE_DELAY = 30000;
+export const TOAST_REMOVE_DELAY = 3000;
 
 export default function Toast({ id, message, type }: ToastItem) {
     const removeToast = useToastStore((state) => state.removeToast);

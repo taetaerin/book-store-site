@@ -23,7 +23,7 @@ export default function Header() {
                 <ul>
                     {category.map((item) => (
                         <li key={item.categoryId}>
-                            <Link to={item.categoryId === null ? "/books" : `/books?category_id=${item.categoryId}`}>
+                            <Link to={item.categoryId === null ? "/books" : `/books?categoryId=${item.categoryId}`}>
                                 {item.categoryName}
                             </Link>
                         </li>

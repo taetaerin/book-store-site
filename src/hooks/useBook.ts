@@ -69,7 +69,7 @@ export const useBook = (bookId: string | undefined) => {
         fetchBook(bookId).then((book) => setBook(book));
 
         fetchBookReview(bookId).then((reviews) => setReviews(reviews));
-    }, [bookId]);
+    }, [bookId, isloggedIn]);
 
     const addReview = (data: BookReviewItemWrite) => {
         if(!book) return;
