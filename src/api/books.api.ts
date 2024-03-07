@@ -31,14 +31,18 @@ export const fetchBooks = async (params: FetchBooksParams) => {
     }
 };
 
-export const fetchBook = async(bookId: string) => {
-    return await requestHandler<BookDetail>("get", `/books/${bookId}`)
-}
+export const fetchBook = async (bookId: string) => {
+    return await requestHandler<BookDetail>("get", `/books/${bookId}`);
+};
 
-export const likeBook = async(bookId: number) => {
-    return await requestHandler("post", `/likes/${bookId}`)
-}
+export const likeBook = async (bookId: number) => {
+    return await requestHandler("post", `/likes/${bookId}`);
+};
 
-export const unlikeBook = async(bookId: number) => {
-    return await requestHandler("delete", `/likes/${bookId}`)
-}
+export const unlikeBook = async (bookId: number) => {
+    return await requestHandler("delete", `/likes/${bookId}`);
+};
+
+export const fetchBestBooks = async () => {
+    return await requestHandler<Book[]>("get", `/books/best`);
+};

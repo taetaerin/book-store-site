@@ -36,4 +36,9 @@ const FooterStyled = styled.footer`
 
         }
     }
+    @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+        flex-direction: column;
+        align-items: center;
+    }
+    
 `;

@@ -55,9 +55,6 @@ export default function Books() {
                     <BooksViewSwitcher />
                 </div>
                 <BooksList books={books} />
-                <div className="more" ref={moreRef}>
-                    <Button size='medium' scheme="normal" onClick={() => fetchNextPage()} disabled={!hasNextPage}>{hasNextPage ? '더보기' : ''}</Button>
-                </div>
             </BookStyle>
         </>
     );

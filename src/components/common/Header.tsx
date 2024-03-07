@@ -1,25 +1,30 @@
 import styled from "styled-components";
 import logo from "@/assets/images/logo.png";
-import { FaSignInAlt, FaRegUser, FaUserCircle } from "react-icons/fa";
+import { FaSignInAlt, FaRegUser, FaUserCircle, FaBars, FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useCategory } from "@/hooks/useCategory";
 import { useAuthStore } from "@/store/authStore";
 import Dropdown from "./Dropdown";
 import ThemeSwitcher from "../header/ThemeSwitcher";
+import { useState } from "react";
 
 export default function Header() {
     const { category } = useCategory();
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
 
     const { isloggedIn, storeLogout } = useAuthStore();
 
     return (
-        <HeaderStyle>
+        <HeaderStyle $isOpen={isMobileOpen}>
             <h1 className="logo">
                 <Link to="/">
                     <img src={logo} alt="book store" />
                 </Link>
             </h1>
             <nav className="category">
+                <button className="menu-button" onClick={() => setIsMobileOpen(!isMobileOpen)}>
+                    {isMobileOpen ? <FaAngleRight /> : <FaBars />}
+                </button>
                 <ul>
                     {category.map((item) => (
                         <li key={item.categoryId}>
@@ -32,8 +37,7 @@ export default function Header() {
             </nav>
 
             <nav className="auth">
-                <ThemeSwitcher />
-                <Dropdown toggleButton={<FaUserCircle />} >
+                <Dropdown toggleButton={<FaUserCircle />}>
                     <>
                         {isloggedIn && (
                             <ul>
@@ -45,6 +49,9 @@ export default function Header() {
                                 </li>
                                 <li>
                                     <button onClick={storeLogout}>로그아웃</button>
+                                </li>
+                                <li>
+                                    <ThemeSwitcher />
                                 </li>
                             </ul>
                         )}
@@ -62,6 +69,9 @@ export default function Header() {
                                         회원가입
                                     </Link>
                                 </li>
+                                <li>
+                                    <ThemeSwitcher />
+                                </li>
                             </ul>
                         )}
                     </>
@@ -71,7 +81,11 @@ export default function Header() {
     );
 }
 
-const HeaderStyle = styled.header`
+interface HeaderStyleProps {
+    $isOpen: boolean;
+}
+
+const HeaderStyle = styled.header<HeaderStyleProps>`
     width: 100%;
     margin: 0 auto;
     max-width: ${({ theme }) => theme.layout.width.large};
@@ -88,6 +102,10 @@ const HeaderStyle = styled.header`
     }
 
     .category {
+        .menu-button {
+            display: none;
+        }
+
         ul {
             display: flex;
             gap: 32px;
@@ -131,6 +149,50 @@ const HeaderStyle = styled.header`
                         margin-right: 6px;
                     }
                 }
+            }
+        }
+    }
+
+    @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+        height: 52px;
+        .logo {
+            padding: 0 0 0 12px;
+            img {
+                width: 140px;
+            }
+        }
+
+        .auth {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+        }
+
+        .category {
+            .menu-button {
+                display: flex;
+                position: absolute;
+                top: 14px;
+                right: ${({ $isOpen }) => ($isOpen ? "52%" : "100px")};
+                background: #fff;
+                border: 0;
+                font-size: 1.5rem;
+            }
+            ul {
+                position: fixed;
+                top: 0;
+                right: ${({ $isOpen }) => ($isOpen ? "0" : "-100%")};
+                width: 60%;
+                height: 100vh;
+                background-color: #fff;
+                transition: right 0.3s ease-in-out;
+
+                margin: 0;
+                padding: 24px;
+                z-index: 1000;
+
+                flex-direction: column;
+                gap: 16px;
             }
         }
     }

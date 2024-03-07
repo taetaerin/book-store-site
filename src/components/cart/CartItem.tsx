@@ -39,8 +39,8 @@ export default function CartItem({ cart, checkedItems, onCheck, onDelete }: Prop
                 <div>
                     <Title size="medium">{cart.title}</Title>
                     <p className="summary">{cart.summary}</p>
-                    <p className="price">{formatNumber(cart.price)}</p>
-                    <p className="quantity">{cart.quantity}</p>
+                    <p className="price">{formatNumber(cart.price)}원</p>
+                    <p className="quantity">{cart.quantity}권</p>
                 </div>
             </div>
             <Button size="medium" scheme="normal" onClick={handleDelete}>

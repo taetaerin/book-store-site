@@ -4,17 +4,31 @@ import { getToken, removeToken } from "@/store/authStore";
 const BASE_URL = "http://localhost:8000";
 const DEFAULT_TIMEOUT = 30000;
 
+const headers = {
+    "content-type": "application/json",
+    Authorization: getToken() ? getToken() : "",
+};
+
 export const createClient = (config?: AxiosRequestConfig) => {
     const axiosInstance = axios.create({
         baseURL: BASE_URL,
         timeout: DEFAULT_TIMEOUT,
         headers: {
             "content-type": "application/json",
-            Authorization: getToken() ? getToken() : "",
         },
         withCredentials: true,
         ...config,
     });
+
+    axiosInstance.interceptors.request.use(
+        (config) => {
+            config.headers["Authorization"] = `${getToken()}`;
+            return config;
+        },
+        (error) => {
+            return Promise.reject(error);
+        }
+    );
 
     axiosInstance.interceptors.response.use(
         (response) => {

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { SignupStyle } from "@/pages/Signup";
 import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/store/authStore";
 
 export interface LoginProps {
     email: string;
@@ -30,7 +31,12 @@ export default function Login() {
             <SignupStyle>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset>
-                        <InputText placeholder="이메일" inputType="email" {...register("email", { required: true })} />
+                        <InputText
+                            placeholder="이메일"
+                            inputType="email"
+                            {...register("email", { required: true })}
+                            inputMode="email"
+                        />
                         {errors.email && <p className="error-text">이메일을 입력해주세요</p>}
                     </fieldset>
                     <fieldset>
